@@ -1,9 +1,11 @@
 body {
-  margin: o;
+  margin: 0;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  background-color: white;
+  overflow: hidden;
 }
 
 .whole,
@@ -17,35 +19,52 @@ body {
 .whole {
   --size: min(30rem, 95vmin);
   border: 0.15rem solid black;
+  background-image: linear-gradient(
+    to right,
+    white,
+    white 50%,
+    black 50%,
+    black 100%
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(
-    to right,
-    black,
-    black 50%,
-    white,
-    white 50%
-  );
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  to {
+    rotate: 1turn;
+  }
 }
 
 .yin,
 .yang {
   --size: 50%;
   background-image: radial-gradient(
-    closest-side var(--inner),
+    closest-side,
+    var(--inner) 0%,
     var(--inner) 25%,
-    var(--outer),
-    var(--outer) 25%
+    var(--outer) 25.5%,
+    var(--outer) 100%
   );
 }
 
 .yin {
+  --inner: white;
+  --outer: black;
+}
+
+.yang {
   --inner: black;
   --outer: white;
 }
 
-.yang {
-  --inner: white;
-  --outer: black;
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: black;
+  }
+  .whole {
+    border-color: white;
+  }
 }
