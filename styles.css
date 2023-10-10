@@ -6,10 +6,16 @@ body {
   min-height: 100vh;
 }
 
-.whole {
-  width: 12rem;
-  height: 12rem;
+.whole,
+.yin,
+.yang {
+  width: var(--size, 1rem);
+  aspect-ratio: 1;
   border-radius: 50%;
+}
+
+.whole {
+  --size: min(30rem, 95vmin);
   border: 0.15rem solid black;
   display: flex;
   flex-direction: column;
@@ -23,26 +29,23 @@ body {
   );
 }
 
-.yin {
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
+.yin,
+.yang {
+  --size: 50%;
   background-image: radial-gradient(
-    closest-side black,
-    black 25%,
-    white,
-    white 25%
+    closest-side var(--inner),
+    var(--inner) 25%,
+    var(--outer),
+    var(--outer) 25%
   );
 }
 
+.yin {
+  --inner: black;
+  --outer: white;
+}
+
 .yang {
-  width: 6rem;
-  height: 6rem;
-  border-radius: 50%;
-  background-image: radial-gradient(
-    closest-side white,
-    white 25%,
-    black,
-    black 25%
-  );
+  --inner: white;
+  --outer: black;
 }
